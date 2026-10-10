@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mornings for Abhi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column like a morning note — countdown dial, today's coupon, wallet, then the 12-morning strip. Single deliberate dawn palette. */
+:root{
+  --dawn-top:#F6DCD3; --dawn-bottom:#E3E9F6;
+  --ink:#1D2340; --ink-soft:#4B5272; --line:#1D234022;
+  --paper:#FFFFFFE6; --paper-solid:#FFFFFF;
+  --marigold:#E8A33A; --rose:#B83E63; --rose-ink:#FFFFFF;
+  --done:#3E7B5E;
+  --display:"Instrument Serif", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:"DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+html{background:var(--dawn-bottom)}
+body{
+  background:linear-gradient(180deg,var(--dawn-top) 0%,var(--dawn-bottom) 70%) fixed, var(--dawn-bottom);
+  color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.55;
+  min-height:100%;
+}
+.wrap{max-width:560px; margin:0 auto; padding-inline:18px; padding-block:28px 64px; display:flex; flex-direction:column; gap:28px}
+h1,h2,h3{font-family:var(--display); font-weight:400; text-wrap:balance; margin:0; line-height:1.1}
+p{margin:0}
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft)}
+
+/* header */
+.hero{display:flex; flex-direction:column; gap:10px}
+.hero h1{font-size:clamp(40px,11vw,60px); display:flex; flex-direction:column; gap:2px}
+.hero h1 .l1{white-space:nowrap; font-size:min(7.4vw, 42px); text-align:center}
+.hero h1 .l2{display:block; text-align:center; font-size:1.3em}
+.hero h1 em{font-style:italic; color:var(--rose)}
+.count{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+.count .num{font-family:var(--display); font-size:clamp(64px,20vw,96px); line-height:.9; font-variant-numeric:tabular-nums}
+.count .lbl{font-size:17px; color:var(--ink-soft); max-width:22ch}
+.ticker{font-family:var(--mono); font-size:15px; font-variant-numeric:tabular-nums; color:var(--ink)}
+
+/* coupon */
+.coupon{background:var(--paper); border-radius:18px; position:relative; box-shadow:0 10px 30px -18px #1D234066; overflow:hidden}
+.coupon .top{padding:22px 22px 18px; display:flex; flex-direction:column; gap:12px}
+.coupon .letter{font-family:var(--display); font-size:22px; line-height:1.35; font-style:italic}
+.coupon .tear{border-top:2px dashed var(--line); position:relative; margin:0 14px}
+.coupon .tear::before,.coupon .tear::after{content:""; position:absolute; top:-12px; width:22px; height:22px; border-radius:50%; background:var(--dawn-bottom)}
+.coupon .tear::before{left:-26px} .coupon .tear::after{right:-26px}
+.coupon .stub{padding:18px 22px 22px; display:flex; flex-direction:column; gap:10px}
+.coupon h3{font-size:28px}
+.meta{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.pill{font-family:var(--mono); font-size:12px; letter-spacing:.04em; padding:3px 10px; border-radius:99px; background:var(--marigold); color:var(--ink)}
+.pill.done{background:var(--done); color:#fff}
+.pill.ghost{background:transparent; border:1px solid var(--line); color:var(--ink-soft)}
+.gift{color:var(--ink-soft)}
+
+button,.btn{font:600 15px var(--body); border:0; border-radius:12px; padding:12px 18px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px}
+.btn-primary{background:var(--rose); color:var(--rose-ink)}
+.btn-quiet{background:transparent; color:var(--ink); border:1px solid var(--line)}
+button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--marigold); outline-offset:2px}
+.row{display:flex; gap:10px; flex-wrap:wrap}
+
+.redeem{display:flex; flex-direction:column; gap:10px; padding-top:6px}
+.redeem label{font-size:14px; color:var(--ink-soft)}
+input,textarea,select{font:16px var(--body); color:var(--ink); background:var(--paper-solid); border:1px solid var(--line); border-radius:10px; padding:10px 12px; width:100%; box-sizing:border-box}
+textarea{resize:vertical; min-height:80px}
+.note{font-size:13px; color:var(--ink-soft)}
+
+/* wallet */
+section{display:flex; flex-direction:column; gap:14px}
+section > h2{font-size:30px}
+.wallet{display:flex; flex-direction:column; gap:12px}
+.mini{background:var(--paper); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:8px}
+.mini .head{display:flex; justify-content:space-between; gap:12px; align-items:baseline}
+.mini h3{font-size:21px; min-width:0}
+details.mini summary{cursor:pointer; list-style:none}
+details.mini summary::-webkit-details-marker{display:none}
+
+/* strip */
+.strip{display:grid; grid-template-columns:repeat(6,1fr); gap:8px}
+.day{aspect-ratio:3/4; max-width:100%; border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-family:var(--mono); font-size:12px; border:1px solid var(--line); background:transparent; color:var(--ink-soft); padding:0}
+.day b{font-family:var(--display); font-weight:400; font-size:24px; color:var(--ink)}
+.day.open{background:var(--paper-solid); border-color:transparent}
+.day.today{background:var(--marigold); border-color:transparent}
+.day.used b{color:var(--done)}
+.day.locked{opacity:.6}
+
+/* prelude */
+.prelude{background:var(--paper); border-radius:18px; padding:22px; display:flex; flex-direction:column; gap:10px}
+.prelude .ticker{font-size:28px}
+
+/* owner editor */
+.owner{border:2px dashed var(--rose); border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:16px; background:var(--paper)}
+.owner h2{font-size:28px}
+.field{display:flex; flex-direction:column; gap:4px}
+.field label{font-size:13px; color:var(--ink-soft)}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:420px){.grid2{grid-template-columns:1fr} .strip{grid-template-columns:repeat(4,1fr)}}
+.edit-day{border-top:1px solid var(--line); padding-top:14px; display:flex; flex-direction:column; gap:8px}
+.edit-day h3{font-size:20px}
+.savebar{position:sticky; bottom:0; padding-block:12px calc(12px + env(safe-area-inset-bottom,0px)); background:var(--paper-solid); display:flex; gap:12px; align-items:center; flex-wrap:wrap; border-top:1px solid var(--line)}
+.status{font-size:14px; color:var(--ink-soft)}
+.loading{padding:40px 0; color:var(--ink-soft)}
+@media (prefers-reduced-motion:no-preference){.coupon{animation:rise .6s ease-out both}@keyframes rise{from{transform:translateY(8px)}to{transform:none}}}
+</style>
+<style>body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <div class="hero">
+    <span class="eyebrow">For Abhi · 12–21 October</span>
+    <h1><span class="l1">Ten mornings, ten gifts of</span><em class="l2">Time</em></h1>
+  </div>
+  <p class="loading" id="loading">Opening today's note…</p>
+</div>
+
+<script>
+(function(){
+  const app = document.getElementById('app');
+  const LS = 'abhi-redeemed-v1';
+  let data = null, isOwner = false, artifactApi = null, previewDate = null;
+
+  const pad = n => String(n).padStart(2,'0');
+  const WORDS=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty'];
+  const numWord = n => WORDS[n] || String(n);
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const parseDay = (s, hour) => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d, hour||0, 0, 0); };
+  const fmtDay = s => parseDay(s).toLocaleDateString('en-IN',{weekday:'short', day:'numeric', month:'short'});
+  const el = (tag, attrs={}, ...kids) => { const e=document.createElement(tag); for(const [k,v] of Object.entries(attrs)){ if(k==='class') e.className=v; else if(k==='text') e.textContent=v; else if(k.startsWith('on')) e.addEventListener(k.slice(2),v); else e.setAttribute(k,v);} kids.flat().forEach(k=>k!=null&&e.append(k)); return e; };
+
+  function loadRedeemed(){ try{ return JSON.parse(localStorage.getItem(LS)||'{}'); }catch(e){ return {}; } }
+  function saveRedeemed(r){ try{ localStorage.setItem(LS, JSON.stringify(r)); }catch(e){} }
+
+  function now(){
+    if(previewDate) return parseDay(previewDate, (Number(data.unlockHour)||0)+1);
+    return new Date();
+  }
+  function isOpen(day, t){ return t >= parseDay(day.date, Number(data.unlockHour)||0); }
+
+  async function load(){
+    try{
+      const res = await fetch('gifts.json?t=' + Date.now(), {cache:'no-store'});
+      data = await res.json();
+    }catch(e){
+      document.getElementById('loading').textContent = "The gifts couldn't load. Check your connection and open the page again.";
+      return;
+    }
+    render();
+    setInterval(()=>{ const t=document.querySelector('[data-ticker]'); if(t) updateTicker(); maybeUnlock(); }, 1000);
+  }
+
+  let lastOpenCount = -1;
+  function maybeUnlock(){
+    const t = now(); const c = data.days.filter(d=>isOpen(d,t)).length;
+    if(c !== lastOpenCount && lastOpenCount !== -1) render();
+  }
+
+  function updateTicker(){
+    const t = now();
+    const next = data.days.find(d=>!isOpen(d,t));
+    const tk = document.querySelector('[data-ticker]');
+    if(!tk) return;
+    if(!next){ tk.textContent=''; return; }
+    let s = Math.max(0, Math.floor((parseDay(next.date, Number(data.unlockHour)||0) - t)/1000));
+    const d = Math.floor(s/86400); s%=86400; const h=Math.floor(s/3600); s%=3600; const m=Math.floor(s/60); s%=60;
+    tk.textContent = (d? d+'d ':'') + pad(h)+':'+pad(m)+':'+pad(s);
+  }
+
+  function waText(day, when){
+    let msg = 'Redeeming my gift for ' + fmtDay(day.date) + ': ' + day.title + '.';
+    if(when) msg += ' When: ' + when + '.';
+    return msg;
+  }
+  function waLink(text){
+    const num = String(data.whatsapp||'').replace(/[^0-9]/g,'');
+    return 'https://wa.me/' + num + '?text=' + encodeURIComponent(text);
+  }
+
+  function redeemBlock(day, idx, redeemed, compact){
+    const box = el('div',{class:'redeem'});
+    const used = redeemed[day.date];
+    if(used){
+      box.append(el('div',{class:'meta'}, el('span',{class:'pill done',text:'Redeemed'}), el('span',{class:'note',text: used.when ? 'For: '+used.when : ''})));
+      box.append(el('button',{class:'btn btn-quiet', type:'button', text:'Undo', onclick:()=>{ const r=loadRedeemed(); delete r[day.date]; saveRedeemed(r); render(); }}));
+      return box;
+    }
+    const openBtn = el('button',{class:'btn btn-primary', type:'button', text:'Redeem this gift'});
+    const form = el('div',{class:'redeem', hidden:''});
+    const id = 'when-'+idx;
+    const input = el('input',{id, type:'text', placeholder:'e.g. Saturday 6 pm'});
+    const send = el('a',{class:'btn btn-primary', target:'_blank', rel:'noopener', href: waLink(waText(day,''))}, 'Send to ' + (data.from||'him') + ' on WhatsApp');
+    const copy = el('button',{class:'btn btn-quiet', type:'button', text:'Copy message'});
+    const msgLine = el('p',{class:'note'});
+    const refresh = ()=>{ const t=waText(day,input.value.trim()); send.href=waLink(t); msgLine.textContent='Message: "'+t+'"'; };
+    input.addEventListener('input', refresh); refresh();
+    send.addEventListener('click', ()=>{ const r=loadRedeemed(); r[day.date]={when:input.value.trim(), at:Date.now()}; saveRedeemed(r); setTimeout(render, 400); });
+    copy.addEventListener('click', ()=>{ const t=waText(day,input.value.trim()); try{ navigator.clipboard.writeText(t).then(()=>copy.textContent='Copied',()=>copy.textContent='Select the message above'); }catch(e){ copy.textContent='Select the message above'; } });
+    form.append(
+      el('label',{for:id, text:'When would you like it?'}), input,
+      el('div',{class:'row'}, send, copy), msgLine,
+      el('p',{class:'note', text:'If WhatsApp doesn\'t open, copy the message and send it yourself. This gift is then marked as redeemed on this phone.'})
+    );
+    openBtn.addEventListener('click', ()=>{ openBtn.hidden=true; form.hidden=false; input.focus(); });
+    box.append(openBtn, form);
+    return box;
+  }
+
+  function couponCard(day, idx, redeemed, isToday){
+    const daysLeft = Math.round((parseDay(data.birthday) - parseDay(day.date))/86400000);
+    return el('article',{class:'coupon', id:'day-'+day.date},
+      el('div',{class:'top'},
+        el('span',{class:'eyebrow', text: fmtDay(day.date) + ' · ' + (daysLeft>0 ? daysLeft + (daysLeft===1?' morning':' mornings') + ' to go' : 'Your birthday')}),
+        el('p',{class:'letter', text: day.message}),
+        el('p',{class:'note', text:'— ' + (data.from||'')})
+      ),
+      el('div',{class:'tear'}),
+      el('div',{class:'stub'},
+        el('div',{class:'meta'}, el('span',{class:'pill', text: 'Gift ' + (idx+1) + ' of ' + data.days.length}), day.duration ? el('span',{class:'pill ghost', text: day.duration}) : null),
+        el('h3',{text: day.title}),
+        el('p',{class:'gift', text: day.gift}),
+        redeemBlock(day, idx, redeemed)
+      )
+    );
+  }
+
+  function render(){
+    const t = now();
+    const redeemed = loadRedeemed();
+    const open = data.days.map((d,i)=>({d,i})).filter(x=>isOpen(x.d,t));
+    lastOpenCount = open.length;
+    const name = data.to || 'you';
+    const bday = parseDay(data.birthday);
+    app.replaceChildren();
+
+    const hero = el('div',{class:'hero'},
+      el('span',{class:'eyebrow', text:'For ' + name + ' · ' + fmtDay(data.days[0].date) + ' – ' + fmtDay(data.birthday)}),
+      el('h1',{}, el('span',{class:'l1', text: cap(numWord(data.days.length)) + ' mornings, ' + numWord(data.days.length) + ' gifts of'}), el('em',{class:'l2', text:'Time'}))
+    );
+    app.append(hero);
+
+    if(open.length === 0){
+      const first = data.days[0];
+      app.append(el('div',{class:'prelude'},
+        el('span',{class:'eyebrow', text:'Your first morning opens'}),
+        el('h2',{text: parseDay(first.date).toLocaleDateString('en-IN',{weekday:'long', day:'numeric', month:'long'}) + ', ' + (Number(data.unlockHour)||0) + ':00 am'}),
+        el('p',{class:'ticker', 'data-ticker':''}),
+        el('p',{class:'note', text:'Add this page to your home screen so it\'s one tap away each morning. In Chrome, tap ⋮ then "Add to Home screen".'})
+      ));
+    } else {
+      const todayIdx = open[open.length-1].i;
+      const today = data.days[todayIdx];
+      const sameDay = t.toDateString() === bday.toDateString();
+      const left = Math.max(0, Math.ceil((bday - parseDay(t.getFullYear()+'-'+(t.getMonth()+1)+'-'+t.getDate()))/86400000));
+      app.append(el('div',{class:'count'},
+        el('span',{class:'num', text: sameDay ? '🎂' : String(left)}),
+        el('span',{class:'lbl', text: sameDay ? 'Happy birthday, ' + name + '.' : (left===1 ? 'morning until your birthday' : 'mornings until your birthday')})
+      ));
+      app.append(couponCard(today, todayIdx, redeemed, true));
+
+      const earlier = open.slice(0,-1).reverse();
+      if(earlier.length){
+        const wallet = el('div',{class:'wallet'});
+        earlier.forEach(({d,i})=>{
+          const used = redeemed[d.date];
+          const det = el('details',{class:'mini', id:'day-'+d.date},
+            el('summary',{}, el('div',{class:'head'}, el('h3',{text:d.title}), el('span',{class: used?'pill done':'pill', text: used?'Redeemed':'Ready'}))),
+            el('span',{class:'eyebrow', text: fmtDay(d.date) + (d.duration ? ' · ' + d.duration : '')}),
+            el('p',{class:'letter', style:'font-family:var(--display);font-style:italic;font-size:19px', text:d.message}),
+            el('p',{class:'gift', text:d.gift}),
+            redeemBlock(d, i, redeemed)
+          );
+          wallet.append(det);
+        });
+        app.append(el('section',{}, el('h2',{text:'Your coupons'}), el('p',{class:'note', text:'Gifts never expire. Redeem any of them whenever you like.'}), wallet));
+      }
+    }
+
+    // strip
+    const strip = el('div',{class:'strip'});
+    const lastOpen = open.length ? open[open.length-1].i : -1;
+    data.days.forEach((d,i)=>{
+      const o = isOpen(d,t); const used = !!redeemed[d.date];
+      const dt = parseDay(d.date);
+      const cls = 'day ' + (o ? (i===lastOpen ? 'today' : 'open') : 'locked') + (used ? ' used' : '');
+      const b = el('button',{class:cls, type:'button', 'aria-label': fmtDay(d.date) + (o ? (used?' redeemed':' open') : ' locked')},
+        el('b',{text:String(dt.getDate())}), el('span',{text: o ? (used ? '✓ used' : 'open') : 'locked'}));
+      if(o) b.addEventListener('click', ()=>{ const tgt=document.getElementById('day-'+d.date); if(tgt){ if(tgt.tagName==='DETAILS') tgt.open=true; tgt.scrollIntoView({behavior:'smooth', block:'start'}); }});
+      else b.disabled = true;
+      strip.append(b);
+    });
+    const next = data.days.find(d=>!isOpen(d,t));
+    app.append(el('section',{}, el('h2',{text:'October'}), strip,
+      next && open.length ? el('p',{class:'note'}, 'Next gift opens in ', el('span',{class:'ticker','data-ticker':''})) : null));
+
+    if(isOwner) app.append(ownerPanel());
+    updateTicker();
+  }
+
+  /* ---------- owner editor (only visible to the artifact owner) ---------- */
+  function ownerPanel(){
+    const draft = JSON.parse(JSON.stringify(data));
+    const status = el('span',{class:'status', text:'Only you can see this editor. Changes go live for her as soon as you save.'});
+    const field = (label, id, value, onInput, type) => {
+      const inp = type==='textarea' ? el('textarea',{id}) : el('input',{id, type:type||'text'});
+      inp.value = value==null ? '' : value;
+      inp.addEventListener('input', e=>onInput(e.target.value));
+      return el('div',{class:'field'}, el('label',{for:id, text:label}), inp);
+    };
+    const preview = el('select',{id:'owner-preview'});
+    preview.append(el('option',{value:'', text:'Live (her real view right now)'}));
+    data.days.forEach(d=>preview.append(el('option',{value:d.date, text:'Preview as ' + fmtDay(d.date)})));
+    preview.value = previewDate || '';
+    preview.addEventListener('change', e=>{ previewDate = e.target.value || null; render(); });
+
+    const panel = el('section',{class:'owner'},
+      el('span',{class:'eyebrow', text:'Editor · visible only to you'}),
+      el('h2',{text:'Edit the gifts'}),
+      el('div',{class:'field'}, el('label',{for:'owner-preview', text:'See the page as she will on a given morning'}), preview),
+      el('div',{class:'grid2'},
+        field('Her name','o-to',draft.to,v=>draft.to=v),
+        field('Your name','o-from',draft.from,v=>draft.from=v),
+        field('Your WhatsApp number, with country code','o-wa',draft.whatsapp,v=>draft.whatsapp=v,'tel'),
+        field('Gifts unlock at (hour, 0–23)','o-hour',draft.unlockHour,v=>draft.unlockHour=Number(v)||0,'number')
+      )
+    );
+    const t = new Date();
+    draft.days.forEach((d,i)=>{
+      const opened = isOpen(d, t);
+      panel.append(el('div',{class:'edit-day'},
+        el('div',{class:'meta'}, el('h3',{text: fmtDay(d.date)}), el('span',{class: opened ? 'pill done' : 'pill ghost', text: opened ? 'She can already see this' : 'Opens ' + fmtDay(d.date) + ', ' + (draft.unlockHour) + ':00'})),
+        field('Gift title','e-title-'+i,d.title,v=>d.title=v),
+        field('Length of time','e-dur-'+i,d.duration,v=>d.duration=v),
+        field('Morning message','e-msg-'+i,d.message,v=>d.message=v,'textarea'),
+        field('What the gift is and how it works','e-gift-'+i,d.gift,v=>d.gift=v,'textarea')
+      ));
+    });
+    const save = el('button',{class:'btn btn-primary', type:'button', text:'Save changes'});
+    save.addEventListener('click', async ()=>{
+      if(!artifactApi){ status.textContent = 'Saving isn\'t available in this view. Open the page while signed in to claude.ai.'; return; }
+      save.disabled = true; status.textContent = 'Saving…';
+      try{
+        await artifactApi.publish({'gifts.json': {content: JSON.stringify(draft, null, 2), contentType:'application/json'}});
+        data = draft; status.textContent = 'Saved. She\'ll see the changes next time she opens the page.';
+        save.disabled = false;
+      }catch(e){
+        save.disabled = false;
+        status.textContent = e && e.code==='conflict' ? 'Someone saved at the same time. The page reloaded with the latest version; make your edit again.' : 'Couldn\'t save (' + ((e&&e.code)||'error') + '). Try again in a moment.';
+      }
+    });
+    panel.append(el('div',{class:'savebar'}, save, status));
+    return panel;
+  }
+
+  load();
+  (async ()=>{
+    try{
+      if(!window.claude || !window.claude.use) return;
+      const user = await window.claude.use('user');
+      isOwner = user ? await user.isOwner() : false;
+      if(isOwner){ artifactApi = await window.claude.use('artifact'); if(data) render(); }
+    }catch(e){}
+  })();
+})();
+</script>
+</body>
+</html>

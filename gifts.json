@@ -1,0 +1,78 @@
+{
+  "to": "Abhi",
+  "from": "Amit",
+  "unlockHour": 7,
+  "birthday": "2026-10-21",
+  "days": [
+    {
+      "date": "2026-10-12",
+      "duration": "Every day until your birthday",
+      "title": "Every morning, Every night",
+      "message": "Good morning. For the next ten days, Every morning starts with something from me. The first gift is the one you'll get the most of: I'm there at the start of your day, through it, and at the end of it.",
+      "gift": "Every morning, a call at the time you choose. Every night, a voice note before you sleep. Redeem this once to tell me your call time."
+    },
+    {
+      "date": "2026-10-13",
+      "duration": "Yours to keep",
+      "title": "A book of three coupons",
+      "message": "Some gifts are just a day. These three are for whenever you need them.",
+      "gift": "One hour of me, any time, no questions asked. One argument you win, no debate. One 'drop everything' call: if you need me, I come. They never expire. When you use one, tell me which."
+    },
+    {
+      "date": "2026-10-14",
+      "duration": "However long you read",
+      "title": "A handwritten letter, delivered by me",
+      "message": "There are things I say quickly that deserve to be said slowly. So I wrote them down.",
+      "gift": "Tell me when you're home and I'll bring the letter to your door myself."
+    },
+    {
+      "date": "2026-10-15",
+      "duration": "1 hour",
+      "title": "Teach me something you love",
+      "message": "I want to understand the things that make you light up.",
+      "gift": "One hour where you teach me anything you love. Tell me anything you would like me to think about and I give it my full attention."
+    },
+    {
+      "date": "2026-10-16",
+      "duration": "about 2 hours",
+      "title": "Take me to your favourite place",
+      "message": "I know the places we go together. I want to see the ones that were yours before me or the ones you visit when I'm not there with you.",
+      "gift": "Take me anywhere that matters to you and tell me why. I'll drive, you lead."
+    },
+    {
+      "date": "2026-10-17",
+      "duration": "yours to keep",
+      "title": "Ten 'open when' letters",
+      "message": "I can't always be there the moment you need me. These can.",
+      "gift": "Ten sealed envelopes, each marked for a moment: open when you're sad, when you miss me, when you can't sleep, and more. Tell me when you're home and I'll bring them over."
+    },
+    {
+      "date": "2026-10-18",
+      "duration": "half a day",
+      "title": "A treasure hunt across the city",
+      "message": "Today, you have something to find.",
+      "gift": "A trail of clues through places that matter to us, with something waiting at the end. Pick the day and I'll set it up."
+    },
+    {
+      "date": "2026-10-19",
+      "duration": "half a day",
+      "title": "An afternoon just for you",
+      "message": "You look after everyone. Today someone looks after you.",
+      "gift": "A spa or salon session of your choice. I book it, you enjoy!"
+    },
+    {
+      "date": "2026-10-20",
+      "duration": "2 hours",
+      "title": "A yes afternoon",
+      "message": "Tomorrow is your day. Today, for two hours, the answer is always yes.",
+      "gift": "For two hours, I will say yes to anything \"reasonable\" you ask for."
+    },
+    {
+      "date": "2026-10-21",
+      "duration": "the whole day",
+      "title": "A day you plan, with no limits",
+      "message": "Happy birthday, Abhi, my Love! Every hour of today belongs to you.",
+      "gift": "Choose anywhere you want to go for a day. I'll take care of the driving, the bookings and the plans. All you do is enjoy it."
+    }
+  ]
+}
