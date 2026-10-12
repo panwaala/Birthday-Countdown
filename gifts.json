@@ -1,6 +1,6 @@
 {
-  "to": "Abhi",
-  "from": "Amit",
+  "to": "Mau",
+  "from": "Chatur Chitta",
   "unlockHour": 7,
   "birthday": "2026-10-21",
   "days": [
@@ -48,16 +48,16 @@
     },
     {
       "date": "2026-10-18",
-      "duration": "half a day",
-      "title": "A treasure hunt across the city",
-      "message": "Today, you have something to find.",
-      "gift": "A trail of clues through places that matter to us, with something waiting at the end. Pick the day and I'll set it up."
+      "duration": "as long as you want",
+      "title": "A shopping day, your way",
+      "message": "Today we go wherever you want to go, for as long as you want.",
+      "gift": "Pick the shops, the market, the mall, anywhere. Pony Porter is with you the whole way: no complaints, no 'I'm tired', no 'are we done yet'. Just tell me where to drive."
     },
     {
       "date": "2026-10-19",
       "duration": "half a day",
       "title": "An afternoon just for you",
-      "message": "You look after everyone. Today someone looks after you.",
+      "message": "You look after everyone. Today your Lucky Kolha looks after you.",
       "gift": "A spa or salon session of your choice. I book it, you enjoy!"
     },
     {
@@ -70,9 +70,9 @@
     {
       "date": "2026-10-21",
       "duration": "the whole day",
-      "title": "A day you plan, with no limits",
-      "message": "Happy birthday, Abhi, my Love! Every hour of today belongs to you.",
-      "gift": "Choose anywhere you want to go for a day. I'll take care of the driving, the bookings and the plans. All you do is enjoy it."
+      "title": "A treasure hunt across the city",
+      "message": "Happy birthday, Mau, my Love! Today, you have something to find.",
+      "gift": "A trail of clues through places that matter to us, with something waiting at the end. Your first clue is on its way."
     }
   ]
 }
